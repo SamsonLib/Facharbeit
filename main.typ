@@ -1,8 +1,41 @@
 #import "template.typ": my-template, code
 #import "@preview/codly:1.3.0": *
 #import "@preview/codly-languages:0.1.10": *
+#import "@preview/glossarium:0.5.10": *
 
 
+#show: make-glossary
+
+#let entry-list = (
+  (
+    key: "tc",
+    short: "Turing Vollstaendige",
+    description: "Eigenschaft einer Programmiersprache, jede Aufgabe lösen zu können, die auch eine Turing Maschine berechnen kann.",
+  ),
+  (
+    key: "pf",
+    short: "Pure Funktionale",
+    description: "Ein Programmierparadigma das alle Berechnungen als Mathematische Funktionen betrachtet."
+  ),
+  (
+    key: "ds",
+    short: "Domain Spezifizierte",
+    description: "Eine Programmiersprache entwickelt direkt fuer einen Spezifischen Zweck. Beispielsweise SQL fuer Datenbanken oder Regex fuer Expression Matching"
+  ),
+  (
+    key: "le",
+    short: "Lazy Evaluierte",
+    description: "Funktionen und Variablen werden erst berechnet wenn sie gebraucht werden und nicht wenn sie definiert werden."
+  ),
+  (
+    key: "dt",
+    short: "Dynamically typed",
+    description: "Variablen muessen sich nicht explizit auf einen Datentyp festlegen. Der Datentyp eines Wertes wird zur Laufzeit bestimmt und kann sich während der Programmausführung ändern."
+  )
+  // Add more terms
+)
+
+#register-glossary(entry-list)
 
 #show: my-template.with(
   title: "Deployment von NixOS im GHG",
@@ -21,7 +54,7 @@ Die Grundlagen von Nix entstanden ab 2003 als Forschungsprojekt von Eelco Dolstr
 
 == Nix Language
 
-Nix ist eine Turing-Komplette, Pure Funktionale, Domain Spezifizierte, Lazy Evaluierte und Dynamisch geschriebene Programmiersprache, in der die Beschreibung von Paketen und die Konfiguration von NixOS vorgenommen wird.
+Nix ist eine #Gls("tc"), #Gls("pf"), #Gls("ds"), #Gls("le") und #Gls("dt") Programmiersprache, in der die Beschreibung von Paketen und die Konfiguration von NixOS vorgenommen wird.
 
 == Nix Package Manager und Derivationen
 
@@ -51,6 +84,14 @@ programs.firefox = {
 ```)
 
 Nach jeder Veraenderung der Konfiguration kann man eine neue Generation des Systems bauen und aktivieren mit `sudo nixos-rebuild switch`. Allerdings werden alte Systembeschreibungen weiterhin behalten, dass ermoeglicht Rollbacks ohne viel Speicherplatz zu verwenden. Wenn man von Generation 1 zu Generation 2 ein Programm entfernt, bleibt dieses jedoch im Nix Store ausser man lehrt den store.
+
+#pagebreak()
+
+= Glossar
+
+#print-glossary(
+ entry-list
+)
 
 #pagebreak()
 
