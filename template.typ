@@ -79,7 +79,7 @@
   ]
   pagebreak()
 
-  set heading(numbering: "I.")
+  set heading(numbering: "1.1.")
 
   body
 }

@@ -26,6 +26,7 @@
           pkgs.liberation_ttf
           pkgs.corefonts
         ];
+        
 
         shellHook = ''
           export FONTCONFIG_FILE="${fontsConf}"
